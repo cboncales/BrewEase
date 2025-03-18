@@ -8,12 +8,12 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-dark-subtle shadow-md fixed w-full top-0 z-50">
+    <nav className="bg-orange-950 shadow-md fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="text-2xl font-bold text-gray-800">
+            <a href="/" className="text-2xl font-bold text-gray-200">
               BrewEase ☕
             </a>
           </div>
@@ -22,7 +22,7 @@ export default function Navbar() {
           <div className="flex items-center md:hidden">
             <button
               onClick={toggleMenu}
-              className="text-gray-800 hover:text-gray-600 focus:outline-none"
+              className="text-gray-200 hover:text-gray-400 focus:outline-none"
             >
               <svg
                 className="h-6 w-6"
@@ -53,25 +53,25 @@ export default function Navbar() {
           <div className="hidden md:flex md:items-center md:space-x-8">
             <a
               href="/menu"
-              className="text-gray-800 hover:text-gray-600 font-medium"
+              className="text-gray-200 hover:text-gray-100 font-medium"
             >
               Menu
             </a>
             <a
               href="/about"
-              className="text-gray-800 hover:text-gray-600 font-medium"
+              className="text-gray-200 hover:text-gray-100 font-medium"
             >
               About
             </a>
             <a
               href="/locations"
-              className="text-gray-800 hover:text-gray-600 font-medium"
+              className="text-gray-200 hover:text-gray-100 font-medium"
             >
               Locations
             </a>
             <a
               href="/contact"
-              className="text-gray-800 hover:text-gray-600 font-medium"
+              className="text-gray-200 hover:text-gray-100 font-medium"
             >
               Contact
             </a>
