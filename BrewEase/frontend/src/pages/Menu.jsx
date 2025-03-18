@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 // Import your coffee images
-import americano from "../assets/images/americano.jpeg";
-import blackCoffee from "../assets/images/blackcoffee.jpg";
-import cappuccino from "../assets/images/cappucino.jpg";
-import espresso from "../assets/images/espresso.jpg";
-import flatWhite from "../assets/images/flat-white.jpg";
-import latte from "../assets/images/latte.jpg";
-import mocha from "../assets/images/mocha2.jpg";
-import irishCoffee from "../assets/images/original-irish.jpg";
-import macchiato from "../assets/images/espresso-macchiato.jpg";
+// import americano from "../assets/images/americano.jpeg";
+// import blackCoffee from "../assets/images/blackcoffee.jpg";
+// import cappuccino from "../assets/images/cappucino.jpg";
+// import espresso from "../assets/images/espresso.jpg";
+// import flatWhite from "../assets/images/flat-white.jpg";
+// import latte from "../assets/images/latte.jpg";
+// import mocha from "../assets/images/mocha2.jpg";
+// import irishCoffee from "../assets/images/original-irish.jpg";
+// import macchiato from "../assets/images/espresso-macchiato.jpg";
 
 export default function Menu() {
   const [coffeeMenu, setCoffeeMenu] = useState([]);
@@ -54,7 +54,7 @@ export default function Menu() {
                 className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105 flex flex-col"
               >
                 <img
-                  src={coffee.image}
+                  src={coffee.image_url}
                   alt={coffee.name}
                   className="w-full h-32 object-fill"
                 />

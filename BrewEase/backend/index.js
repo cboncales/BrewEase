@@ -38,11 +38,13 @@ pool.query("SELECT NOW()", (err, res) => {
   }
 });
 
-// Example API endpoint to fetch data
+// Fetch coffee data with full image URLs
 app.get("/api/coffees", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM coffees");
-    res.json(result.rows);
+    const result = await pool.query(
+      "SELECT id, name, price, description, image_url FROM coffees"
+    );
+    res.json(result.rows); // Now directly returning image_url from DB
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
