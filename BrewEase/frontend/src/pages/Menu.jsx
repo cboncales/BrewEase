@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 // Import your coffee images
 import americano from "../assets/images/americano.jpeg";
@@ -12,62 +14,19 @@ import irishCoffee from "../assets/images/original-irish.jpg";
 import macchiato from "../assets/images/espresso-macchiato.jpg";
 
 export default function Menu() {
-  const coffeeMenu = [
-    {
-      name: "Americano",
-      image: americano,
-      description: "A smooth espresso diluted with hot water.",
-      price: "₱199",
-    },
-    {
-      name: "Black Coffee",
-      image: blackCoffee,
-      description: "Strong and bold, just the way you like it.",
-      price: "₱142",
-    },
-    {
-      name: "Cappuccino",
-      image: cappuccino,
-      description: "Espresso with steamed milk and foam.",
-      price: "₱228",
-    },
-    {
-      name: "Espresso",
-      image: espresso,
-      description: "A concentrated shot of coffee.",
-      price: "₱114",
-    },
-    {
-      name: "Flat White",
-      image: flatWhite,
-      description: "Creamy espresso with microfoam.",
-      price: "₱256",
-    },
-    {
-      name: "Latte",
-      image: latte,
-      description: "Espresso with steamed milk and a touch of foam.",
-      price: "₱228",
-    },
-    {
-      name: "Mocha",
-      image: mocha,
-      description: "Espresso with chocolate and steamed milk.",
-      price: "₱256",
-    },
-    {
-      name: "Irish Coffee",
-      image: irishCoffee,
-      description: "Coffee with whiskey, sugar, and cream.",
-      price: "₱285",
-    },
-    {
-      name: "Espresso Macchiato",
-      image: macchiato,
-      description: "Espresso with a dollop of foam.",
-      price: "₱171",
-    },
-  ];
+  const [coffeeMenu, setCoffeeMenu] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from the backend
+    axios
+      .get("http://localhost:5000/api/coffees")
+      .then((response) => {
+        setCoffeeMenu(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, []);
 
   const handleOrder = (coffeeName) => {
     alert(`You ordered a ${coffeeName}!`);
@@ -105,7 +64,7 @@ export default function Menu() {
                       {coffee.name}
                     </h2>
                     <span className="text-lg font-semibold text-amber-900">
-                      {coffee.price}
+                      ₱{coffee.price}
                     </span>
                   </div>
                   <p className="text-sm text-gray-600 mt-2 flex-grow">
