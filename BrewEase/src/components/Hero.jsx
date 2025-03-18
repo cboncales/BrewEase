@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
     <div
@@ -11,9 +13,12 @@ export default function Hero() {
         <p className="text-xl text-gray-200 mb-6">
           Start your day with the perfect cup of coffee.
         </p>
-        <button className="px-6 py-3 bg-amber-900 shadow-xl text-white font-semibold rounded-lg hover:bg-amber-800 transition duration-300">
+        <Link
+          to="/menu"
+          className="px-6 py-3 bg-amber-900 shadow-xl cursor-pointer text-white font-semibold rounded-lg hover:bg-amber-800 transition duration-300"
+        >
           Explore Our Menu
-        </button>
+        </Link>
       </div>
     </div>
   );
