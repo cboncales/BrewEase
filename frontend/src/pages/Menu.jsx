@@ -23,14 +23,7 @@ export default function Menu() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-[url('/images/bg1.jpg')] bg-cover bg-fixed"
-      style={{
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <div className="min-h-screen bg-[url('/images/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
       <div className="min-h-screen bg-opacity-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center text-gray-200 mb-8">
