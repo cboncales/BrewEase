@@ -2,15 +2,32 @@ version: "3.8"
 services:
   webserver:
     image: nginx:latest
-    container_name: bootstrap_nginx
+    container_name: brewease_nginx
     restart: unless-stopped
     ports:
       - "8000:80"
     volumes:
-      - ./public:/usr/share/nginx/html
+      - ./frontend/dist:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - backend
     networks:
-      - bootstrap_network
+      - brewease_network
+
+  backend:
+    build: ./backend # Use the Dockerfile in the backend directory
+    container_name: brewease_backend
+    restart: unless-stopped
+    ports:
+      - "5001:5000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./backend:/app # Mount the backend directory for development (optional)
+      - /app/node_modules # Ensure node_modules is not overwritten by the volume
+    networks:
+      - brewease_network
+
 networks:
-  bootstrap_network:
+  brewease_network:
     driver: bridge
