@@ -109,15 +109,6 @@ export default function About() {
               <strong>Follow Us:</strong> brewease2023
             </p>
           </div>
-
-          <div className="text-center mt-8">
-            <Link
-              to="/"
-              className="px-6 py-3 bg-amber-900 text-white font-semibold rounded-lg hover:bg-amber-800 transition duration-300"
-            >
-              Back to Home
-            </Link>
-          </div>
         </div>
       </div>
     </div>

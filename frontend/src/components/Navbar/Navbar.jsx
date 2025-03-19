@@ -52,22 +52,22 @@ export default function Navbar() {
           {/* Navigation Links (Desktop) */}
           <div className="hidden md:flex md:items-center md:space-x-8">
             <a
+              href="/menu"
+              className="text-gray-200 hover:text-amber-600 font-medium"
+            >
+              Menu
+            </a>
+            <a
               href="/about"
               className="text-gray-200 hover:text-amber-600 font-medium"
             >
               About
             </a>
             <a
-              href="/locations"
+              href="/location"
               className="text-gray-200 hover:text-amber-600 font-medium"
             >
               Locations
-            </a>
-            <a
-              href="/contact"
-              className="text-gray-200 hover:text-amber-600 font-medium"
-            >
-              Contact
             </a>
           </div>
         </div>
@@ -78,22 +78,22 @@ export default function Navbar() {
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
+              href="/menu"
+              className="text-gray-200 hover:text-amber-600 font-medium"
+            >
+              Menu
+            </a>
+            <a
               href="/about"
               className="block text-gray-800 hover:text-gray-600 font-medium"
             >
               About
             </a>
             <a
-              href="/locations"
+              href="/location"
               className="block text-gray-800 hover:text-gray-600 font-medium"
             >
               Locations
-            </a>
-            <a
-              href="/contact"
-              className="block text-gray-800 hover:text-gray-600 font-medium"
-            >
-              Contact
             </a>
           </div>
         </div>
