@@ -6,7 +6,7 @@ export default function About() {
     <div className="min-h-screen bg-[url('/images/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
       <div className="min-h-screen bg-transparent bg-opacity-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-white">
-          <h1 className="text-5xl font-bold text-center text-amber-600 mb-8">
+          <h1 className="text-5xl font-bold text-center text-gray-200 mb-8">
             About BrewEase
           </h1>
           <p className="text-lg text-gray-200 mb-8">

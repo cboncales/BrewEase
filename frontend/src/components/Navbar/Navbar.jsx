@@ -13,8 +13,13 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <a href="/" className="text-2xl font-bold text-gray-200">
-              BrewEase ☕
+            <img
+              className="w-7 mb-2"
+              src="/icons/brewease-icon.png"
+              alt="BrewEase Icon"
+            />
+            <a href="/" className="solway text-2xl font-bold text-gray-200">
+              BrewEase
             </a>
           </div>
 
@@ -51,6 +56,12 @@ export default function Navbar() {
 
           {/* Navigation Links (Desktop) */}
           <div className="hidden md:flex md:items-center md:space-x-8">
+            <a
+              href="/"
+              className="text-gray-200 hover:text-amber-600 font-medium"
+            >
+              Home
+            </a>
             <a
               href="/menu"
               className="text-gray-200 hover:text-amber-600 font-medium"
