@@ -27,6 +27,20 @@ services:
       - /app/node_modules # Ensure node_modules is not overwritten by the volume
     networks:
       - brewease_network
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: BrewDB
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2001
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - brewease_network
 
 networks:
   brewease_network:
