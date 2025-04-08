@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Navbar() {
+export default function Navbar({ onLoginClick }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -80,6 +80,12 @@ export default function Navbar() {
             >
               Locations
             </a>
+            <button
+              onClick={onLoginClick}
+              className="text-gray-200 hover:text-amber-600 font-medium"
+            >
+              Login
+            </button>
           </div>
         </div>
       </div>
