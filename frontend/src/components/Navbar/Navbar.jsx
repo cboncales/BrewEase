@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function Navbar({ onLoginClick }) {
+export default function Navbar({
+  onLoginClick,
+  isAuthenticated,
+  user,
+  onLogout,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -80,38 +85,82 @@ export default function Navbar({ onLoginClick }) {
             >
               Locations
             </a>
-            <button
-              onClick={onLoginClick}
-              className="text-gray-200 hover:text-amber-600 font-medium"
-            >
-              Login
-            </button>
+
+            {/* Authentication Section */}
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <span className="text-gray-200 font-medium">
+                  Welcome, {user?.email}
+                </span>
+                <button
+                  onClick={onLogout}
+                  className="bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onLoginClick}
+                className="text-gray-200 hover:text-amber-600 font-medium"
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       </div>
 
       {/* Mobile Menu (Collapsible) */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden bg-white shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <a
+              href="/"
+              className="block text-gray-800 hover:text-amber-600 font-medium py-2"
+            >
+              Home
+            </a>
+            <a
               href="/menu"
-              className="text-gray-200 hover:text-amber-600 font-medium"
+              className="block text-gray-800 hover:text-amber-600 font-medium py-2"
             >
               Menu
             </a>
             <a
               href="/about"
-              className="block text-gray-800 hover:text-gray-600 font-medium"
+              className="block text-gray-800 hover:text-amber-600 font-medium py-2"
             >
               About
             </a>
             <a
               href="/location"
-              className="block text-gray-800 hover:text-gray-600 font-medium"
+              className="block text-gray-800 hover:text-amber-600 font-medium py-2"
             >
               Locations
             </a>
+
+            {/* Mobile Authentication Section */}
+            {isAuthenticated ? (
+              <div className="pt-2 border-t border-gray-200">
+                <div className="text-gray-800 font-medium py-2">
+                  Welcome, {user?.email}
+                </div>
+                <button
+                  onClick={onLogout}
+                  className="w-full text-left bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition duration-200"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onLoginClick}
+                className="block text-gray-800 hover:text-amber-600 font-medium py-2"
+              >
+                Login
+              </button>
+            )}
           </div>
         </div>
       )}

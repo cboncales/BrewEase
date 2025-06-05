@@ -1,11 +1,20 @@
 import { useState } from "react";
+import useAuthStore from "../store/authStore";
 
-export default function AuthModal({ isLogin, toggleForm, closeModal }) {
+export default function AuthModal({
+  isLogin,
+  toggleForm,
+  closeModal,
+  onLoginSuccess,
+}) {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
   });
+
+  // Zustand store
+  const { login, register, isLoading } = useAuthStore();
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -16,6 +25,8 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Form submitted", { isLogin, email: formData.email });
+
     if (!formData.email || !formData.password) {
       alert("Please fill in all fields.");
       return;
@@ -25,30 +36,39 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
       return;
     }
 
-    const endpoint = isLogin
-      ? "http://localhost:5000/api/auth/login"
-      : "http://localhost:5000/api/auth/register";
+    if (isLogin) {
+      // Handle login
+      console.log("Attempting login...");
+      const result = await login(formData.email, formData.password);
+      console.log("Login result:", result);
 
-    try {
-      const res = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Something went wrong");
+      if (result.success) {
+        console.log("Login successful, calling onLoginSuccess");
+        alert("Login successful!");
+        onLoginSuccess();
+      } else {
+        console.log("Login failed:", result.error);
+        alert(result.error);
       }
+    } else {
+      // Handle registration
+      console.log("Attempting registration...");
+      const result = await register(formData.email, formData.password);
+      console.log("Registration result:", result);
 
-      alert(isLogin ? "Login successful!" : "Registration successful!");
-      closeModal();
-    } catch (err) {
-      alert(err.message);
+      if (result.success) {
+        alert(result.message);
+        // Reset form
+        setFormData({
+          email: "",
+          password: "",
+          confirmPassword: "",
+        });
+        // Switch to login form
+        toggleForm();
+      } else {
+        alert(result.error);
+      }
     }
   };
 
@@ -76,6 +96,7 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
               required
+              disabled={isLoading}
             />
           </div>
           <div>
@@ -89,6 +110,7 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
               onChange={handleChange}
               className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
               required
+              disabled={isLoading}
             />
           </div>
           {!isLogin && (
@@ -103,23 +125,26 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
                 required
+                disabled={isLoading}
               />
             </div>
           )}
           <button
             type="submit"
-            className="w-full bg-amber-500 text-white py-2 rounded-lg hover:bg-amber-600 transition duration-200"
+            className="w-full bg-amber-500 text-white py-2 rounded-lg hover:bg-amber-600 transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={isLoading}
           >
-            {isLogin ? "Login" : "Register"}
+            {isLoading ? "Processing..." : isLogin ? "Login" : "Register"}
           </button>
         </form>
         <div className="mt-4 text-center text-sm text-gray-600">
           {isLogin ? (
             <>
-              Don’t have an account?{" "}
+              Don't have an account?{" "}
               <button
                 onClick={toggleForm}
                 className="text-amber-600 hover:underline"
+                disabled={isLoading}
               >
                 Register here
               </button>
@@ -130,6 +155,7 @@ export default function AuthModal({ isLogin, toggleForm, closeModal }) {
               <button
                 onClick={toggleForm}
                 className="text-amber-600 hover:underline"
+                disabled={isLoading}
               >
                 Login
               </button>

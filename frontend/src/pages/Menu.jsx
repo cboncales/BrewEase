@@ -6,9 +6,12 @@ export default function Menu() {
   const [coffeeMenu, setCoffeeMenu] = useState([]);
 
   useEffect(() => {
+    // Get API base URL from environment or default to development setup
+    const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:5001";
+
     // Fetch data from the backend
     axios
-      .get("http://localhost:5000/api/coffees")
+      .get(`${apiBaseUrl}/api/coffees`)
       .then((response) => {
         setCoffeeMenu(response.data);
       })
@@ -24,7 +27,7 @@ export default function Menu() {
 
   return (
     <div className="min-h-screen bg-[url('/images/bg1.jpg')] bg-cover bg-fixed bg-center bg-no-repeat">
-      <div className="min-h-screen bg-opacity-50 py-20 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-transparent bg-opacity-50 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold text-center text-gray-200 mb-8">
             Our Menu☕
